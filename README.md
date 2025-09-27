@@ -10,6 +10,8 @@
 
 Dragonfly is a comprehensive satellite-based urban change detection system that combines deep learning with Sentinel-2 satellite imagery to analyze environmental and urban changes over time. The system features multiple interfaces including a web UI, REST API, and advanced geospatial analysis capabilities.
 
+**🚀 NEW: Now featuring our custom Infinity World Model** - A cutting-edge AI system for advanced geospatial intelligence and location scoring optimized for Malaysian market conditions.
+
 ### 🔬 Key Features
 
 - **🛰️ Satellite Imagery Analysis**: Uses Sentinel-2 data with cloud-free filtering
@@ -17,6 +19,8 @@ Dragonfly is a comprehensive satellite-based urban change detection system that 
 - **📊 Geospatial Intelligence**: Advanced location search and analysis
 - **💾 Data Integration**: Census, real estate, and socioeconomic data
 - **⚡ Real-time Processing**: Fast change detection with caching
+- **🧠 Infinity World Model**: Custom AI for Malaysia-specific location scoring
+- **🏢 SME Business Intelligence**: Location scoring for Malaysian small businesses
 
 ## 🚀 Quick Start
 
@@ -24,7 +28,7 @@ Dragonfly is a comprehensive satellite-based urban change detection system that 
 
 - Python 3.8+
 - Git
-- Sentinel Hub account (free tier available)
+- **Sentinel Hub account** (free tier available) - Required for satellite imagery access
 
 ### Installation
 
@@ -39,12 +43,19 @@ cd dragonfly
 pip install -r requirements.txt
 ```
 
-3. **Configure Sentinel Hub credentials**
+3. **Configure Sentinel Hub API credentials**
 ```bash
-# Create .env file (optional - defaults are included)
+# Create .env file (optional - defaults are included for demo)
 echo "CLIENT_ID=your_sentinel_hub_client_id" > .env
 echo "CLIENT_SECRET=your_sentinel_hub_client_secret" >> .env
 ```
+
+**About Sentinel Hub API:**
+- **What it does**: Provides access to Sentinel-2 satellite imagery from European Space Agency
+- **Why we need it**: Downloads high-resolution satellite images for change detection analysis
+- **Free tier**: 1,000 requests/month, perfect for testing and small projects
+- **Sign up**: [Sentinel Hub Dashboard](https://apps.sentinel-hub.com/dashboard/)
+- **Default credentials**: Demo credentials are included, but get your own for production use
 
 4. **Launch the applications**
 
@@ -59,6 +70,14 @@ python app.py
 python unified_api.py
 # API available at http://localhost:8000
 # Interactive docs at http://localhost:8000/docs
+```
+
+**Malaysia Location Scoring API (Infinity World Model)**
+```bash
+cd backend-1
+python main.py
+# API available at http://localhost:8001
+# Interactive docs at http://localhost:8001/docs
 ```
 
 ## 🎯 Usage Examples
@@ -109,6 +128,12 @@ response = requests.post("http://localhost:8000/analyze", json={
 Dragonfly/
 ├── 🌐 Web Interface (app.py)
 ├── 🔧 Unified API (unified_api.py)
+├── 🧠 Infinity World Model (Infinity_World_Model.ipynb) - CUSTOM AI
+├── 🏢 Malaysia Location Scoring API (backend-1/)
+│   ├── main.py - FastAPI backend
+│   ├── requirements.txt
+│   ├── test_api.py
+│   └── README.md
 ├── 📊 Data Services
 │   ├── census_data.csv
 │   ├── real_estate_data.csv
@@ -124,16 +149,26 @@ Dragonfly/
 
 ## 🔬 Technical Details
 
-### Model Architecture
+### Infinity World Model (Custom AI)
+- **🧠 Advanced Geospatial Intelligence**: Custom-trained model for Malaysian market analysis
+- **📍 Location Scoring Algorithm**: SME-optimized scoring with Malaysia-specific weights
+- **🏢 Business Intelligence**: Competition, growth, seasonality, and sentiment analysis
+- **⚡ Real-time API**: FastAPI backend with comprehensive scoring endpoints
+- **📊 Multi-factor Analysis**: 40% competition, 30% growth, 20% seasonality, 10% sentiment
+
+### Satellite Change Detection Model
 - **Input**: Concatenated before/after satellite images (RGB, 128x128)
 - **Output**: Binary change mask highlighting detected changes
-- **Framework**: TensorFlow/Keras
+- **Framework**: TensorFlow/Keras U-Net Architecture
 
-### Satellite Data
+### Satellite Data (via Sentinel Hub API)
 - **Source**: Sentinel-2 (European Space Agency)
+- **API Provider**: Sentinel Hub - Professional satellite data service
 - **Bands**: B04 (Red), B03 (Green), B02 (Blue)
 - **Resolutions**: 10m, 5m, 2.5m
 - **Cloud Filter**: Only 0% cloud coverage images used
+- **Coverage**: Global coverage with 5-day revisit time
+- **Data Format**: GeoTIFF with automatic preprocessing
 
 ### API Endpoints
 
@@ -153,6 +188,12 @@ Dragonfly/
 - `GET /datasets/info` - Available datasets
 - `GET /locations/{location}/socioeconomic` - Socioeconomic data
 - `GET /zip-codes/{code}/analysis` - Postal code analysis
+
+#### Infinity World Model API (Port 8001)
+- `POST /location-score` - Malaysia-specific location scoring
+- `POST /batch-score` - Batch location analysis
+- `GET /score-ranges` - Score interpretation guide
+- `GET /health` - API health check
 
 ## 🌱 NDVI Analysis
 
@@ -175,6 +216,42 @@ GET /analyze/ndvi/{location}/quick?zoom_level=City-Wide%20(0.025°)
 }
 ```
 
+## 🧠 Infinity World Model - Custom AI System
+
+### Malaysia-Specific Location Intelligence
+Our custom **Infinity World Model** (`Infinity_World_Model.ipynb`) provides advanced geospatial intelligence specifically tuned for Malaysian market conditions and SME business requirements.
+
+#### Key Capabilities
+- **🏢 SME Business Scoring**: Optimized for Malaysian small business success factors
+- **📊 Multi-Factor Analysis**: Competition (40%), Growth (30%), Seasonality (20%), Sentiment (10%)
+- **🌏 Malaysian Market Focus**: Accounts for monsoon seasons, festivals, urbanization patterns
+- **⚡ Real-time API**: FastAPI backend for instant location scoring
+- **📈 Risk Assessment**: Identifies opportunities and risk factors
+
+#### Usage Example
+```python
+# Malaysia Location Scoring API
+import requests
+
+response = requests.post("http://localhost:8001/location-score", json={
+    "competition_score": 72,    # Market competition intensity
+    "growth_score": 81,         # Urban development potential
+    "seasonality_score": 88,    # Seasonal demand stability
+    "sentiment_score": 66       # Local sentiment & reviews
+})
+
+result = response.json()
+print(f"Location Score: {result['location_score']} ({result['grade']})")
+print(f"Recommendation: {result['recommendation']}")
+```
+
+#### Score Interpretation
+- **85-100 (A+)**: Excellent opportunity - High potential for success
+- **75-84 (A)**: Very good opportunity - Strong market conditions
+- **65-74 (B+)**: Good opportunity - Favorable conditions
+- **55-64 (B)**: Moderate opportunity - Requires careful planning
+- **45-54 (C)**: Challenging opportunity - High risk
+- **0-44 (D)**: Not recommended - Very high risk
 ## 📊 Data Integration
 
 ### Available Datasets
@@ -269,15 +346,20 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Features Roadmap
 
+- [x] **Infinity World Model** - Custom AI for Malaysian market analysis
+- [x] **Malaysia Location Scoring API** - SME-focused business intelligence
 - [ ] Real-time change monitoring
 - [ ] Mobile app integration
 - [ ] Machine learning model improvements
 - [ ] Additional satellite data sources
 - [ ] Cloud deployment templates
 - [ ] Advanced visualization tools
+- [ ] Infinity World Model v2.0 - Enhanced AI capabilities
 
 ---
 
-**Made with ❤️ for environmental monitoring and urban development analysis**
+**Made with ❤️ for environmental monitoring, urban development analysis, and Malaysian SME business intelligence**
+
+*Featuring our custom Infinity World Model - Advanced AI for geospatial intelligence*
 
 *Last updated: September 2025*
