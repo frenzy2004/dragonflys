@@ -1,0 +1,30 @@
+city,state,zip_code,latitude,longitude,region,metro_area
+Kuala Lumpur,Wilayah Persekutuan,50000,3.1390,101.6869,Central,Greater Kuala Lumpur
+Cyberjaya,Selangor,63000,2.9225,101.6550,Central,Greater Kuala Lumpur
+Putrajaya,Wilayah Persekutuan,63010,2.9269,101.6964,Central,Greater Kuala Lumpur
+Dengkil,Selangor,63020,2.8931,101.6655,Central,Greater Kuala Lumpur
+Salak Tinggi,Selangor,63030,2.8458,101.7222,Central,Greater Kuala Lumpur
+Kota Warisan,Selangor,63040,2.8689,101.6889,Central,Greater Kuala Lumpur
+Sepang,Selangor,63050,2.8133,101.7333,Central,Greater Kuala Lumpur
+Sepang,Selangor,63060,2.7917,101.7167,Central,Greater Kuala Lumpur
+Sungai Pelek,Selangor,63070,2.6500,101.7000,Central,Greater Kuala Lumpur
+Tanjung Sepat,Selangor,63080,2.6583,101.5667,Central,Greater Kuala Lumpur
+Cyberjaya South,Selangor,63090,2.8833,101.6333,Central,Greater Kuala Lumpur
+Cyberjaya North,Selangor,63100,2.9389,101.6889,Central,Greater Kuala Lumpur
+Cyberjaya East,Selangor,63110,2.9444,101.6944,Central,Greater Kuala Lumpur
+Cyberjaya West,Selangor,63120,2.9500,101.7000,Central,Greater Kuala Lumpur
+Sepang North,Selangor,63130,2.9556,101.7056,Central,Greater Kuala Lumpur
+Sepang South,Selangor,63140,2.9611,101.7111,Central,Greater Kuala Lumpur
+Petaling Jaya,Selangor,46000,3.1073,101.6085,Central,Greater Kuala Lumpur
+Shah Alam,Selangor,40000,3.0733,101.5185,Central,Greater Kuala Lumpur
+Klang,Selangor,41000,3.0333,101.4500,Central,Greater Kuala Lumpur
+George Town,Pulau Pinang,10000,5.4164,100.3327,Northern,Penang
+Ipoh,Perak,30000,4.5841,101.0829,Northern,Perak
+Johor Bahru,Johor,80000,1.4927,103.7414,Southern,Johor
+Kuching,Sarawak,93000,1.5533,110.3592,East Malaysia,Sarawak
+Kota Kinabalu,Sabah,88000,5.9804,116.0735,East Malaysia,Sabah
+Alor Setar,Kedah,5000,6.1211,100.3681,Northern,Kedah
+Kuantan,Pahang,25000,3.8077,103.3260,Central,Pahang
+Malacca,Malacca,75000,2.1896,102.2501,Southern,Malacca
+Seremban,Negeri Sembilan,70000,2.7297,101.9381,Central,Negeri Sembilan
+Kangar,Perlis,1000,6.4414,100.1986,Northern,Perlis
