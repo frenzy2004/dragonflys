@@ -10,7 +10,7 @@
 
 Dragonfly is a comprehensive satellite-based urban change detection system that combines deep learning with Sentinel-2 satellite imagery to analyze environmental and urban changes over time. The system features multiple interfaces including a web UI, REST API, and advanced geospatial analysis capabilities.
 
-**🚀 NEW: Now featuring our custom Infinity World Model** - A cutting-edge AI system for advanced geospatial intelligence and location scoring optimized for Malaysian market conditions.
+**🚀 NEW: Now featuring our custom BizLocate Model** - A cutting-edge AI system for advanced geospatial intelligence and location scoring optimized for Malaysian market conditions.
 
 ### 🔬 Key Features
 
@@ -19,7 +19,7 @@ Dragonfly is a comprehensive satellite-based urban change detection system that 
 - **📊 Geospatial Intelligence**: Advanced location search and analysis
 - **💾 Data Integration**: Census, real estate, and socioeconomic data
 - **⚡ Real-time Processing**: Fast change detection with caching
-- **🧠 Infinity World Model**: Custom AI for Malaysia-specific location scoring
+- **🧠 BizLocate Model**: Custom AI for Malaysia-specific location scoring
 - **🏢 SME Business Intelligence**: Location scoring for Malaysian small businesses
 
 ## 🚀 Quick Start
@@ -72,7 +72,7 @@ python unified_api.py
 # Interactive docs at http://localhost:8000/docs
 ```
 
-**Malaysia Location Scoring API (Infinity World Model)**
+**Malaysia Location Scoring API (BizLocate Model)**
 ```bash
 cd backend-1
 python main.py
@@ -128,7 +128,7 @@ response = requests.post("http://localhost:8000/analyze", json={
 Dragonfly/
 ├── 🌐 Web Interface (app.py)
 ├── 🔧 Unified API (unified_api.py)
-├── 🧠 Infinity World Model (Infinity_World_Model.ipynb) - CUSTOM AI
+├── 🧠 BizLocate Model (BizLocate_Model.ipynb) - CUSTOM AI
 ├── 🏢 Malaysia Location Scoring API (backend-1/)
 │   ├── main.py - FastAPI backend
 │   ├── requirements.txt
@@ -149,7 +149,7 @@ Dragonfly/
 
 ## 🔬 Technical Details
 
-### Infinity World Model (Custom AI)
+### BizLocate Model (Custom AI)
 - **🧠 Advanced Geospatial Intelligence**: Custom-trained model for Malaysian market analysis
 - **📍 Location Scoring Algorithm**: SME-optimized scoring with Malaysia-specific weights
 - **🏢 Business Intelligence**: Competition, growth, seasonality, and sentiment analysis
@@ -189,7 +189,7 @@ Dragonfly/
 - `GET /locations/{location}/socioeconomic` - Socioeconomic data
 - `GET /zip-codes/{code}/analysis` - Postal code analysis
 
-#### Infinity World Model API (Port 8001)
+#### BizLocate Model API (Port 8001)
 - `POST /location-score` - Malaysia-specific location scoring
 - `POST /batch-score` - Batch location analysis
 - `GET /score-ranges` - Score interpretation guide
@@ -216,10 +216,10 @@ GET /analyze/ndvi/{location}/quick?zoom_level=City-Wide%20(0.025°)
 }
 ```
 
-## 🧠 Infinity World Model - Custom AI System
+## 🧠 BizLocate Model - Custom AI System
 
 ### Malaysia-Specific Location Intelligence
-Our custom **Infinity World Model** (`Infinity_World_Model.ipynb`) provides advanced geospatial intelligence specifically tuned for Malaysian market conditions and SME business requirements.
+Our custom **BizLocate Model** (`BizLocate_Model.ipynb`) provides advanced geospatial intelligence specifically tuned for Malaysian market conditions and SME business requirements.
 
 #### Key Capabilities
 - **🏢 SME Business Scoring**: Optimized for Malaysian small business success factors
@@ -346,7 +346,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🌟 Features Roadmap
 
-- [x] **Infinity World Model** - Custom AI for Malaysian market analysis
+- [x] **BizLocate Model** - Custom AI for Malaysian market analysis
 - [x] **Malaysia Location Scoring API** - SME-focused business intelligence
 - [ ] Real-time change monitoring
 - [ ] Mobile app integration
@@ -354,12 +354,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [ ] Additional satellite data sources
 - [ ] Cloud deployment templates
 - [ ] Advanced visualization tools
-- [ ] Infinity World Model v2.0 - Enhanced AI capabilities
+- [ ] BizLocate Model v2.0 - Enhanced AI capabilities
 
 ---
 
 **Made with ❤️ for environmental monitoring, urban development analysis, and Malaysian SME business intelligence**
 
-*Featuring our custom Infinity World Model - Advanced AI for geospatial intelligence*
+*Featuring our custom BizLocate Model - Advanced AI for geospatial intelligence*
 
 *Last updated: September 2025*
