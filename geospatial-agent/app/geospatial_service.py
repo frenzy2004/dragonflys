@@ -61,8 +61,8 @@ class GeospatialService:
         }
         return mapping.get(choice, 5)
 
-    def _get_two_zero_cloud_dates(self, lat: float, lon: float, buffer: float) -> Tuple[Optional[str], Optional[str]]:
-        """Find two dates with 0% cloud coverage."""
+    def _get_two_low_cloud_dates(self, lat: float, lon: float, buffer: float) -> Tuple[Optional[str], Optional[str]]:
+        """Find two dates with low cloud coverage (max 45%)."""
         try:
             config = SHConfig()
             config.sh_client_id = self.client_id
@@ -79,10 +79,10 @@ class GeospatialService:
                 bbox=bbox,
                 time=(start_date, end_date),
                 filter={
-                    "op": "=",
+                    "op": "<=",
                     "args": [
                         {"property": "eo:cloud_cover"},
-                        0.0
+                        45.0
                     ]
                 },
                 filter_lang="cql2-json",
@@ -201,10 +201,10 @@ class GeospatialService:
             buffer = self._map_bbox_choice(zoom_level)
             resolution_val = self._map_resolution_choice(resolution)
 
-            # Find dates with 0% cloud coverage
-            date1, date2 = self._get_two_zero_cloud_dates(lat, lon, buffer)
+            # Find dates with low cloud coverage (max 45%)
+            date1, date2 = self._get_two_low_cloud_dates(lat, lon, buffer)
             if not date1 or not date2:
-                raise Exception("Not enough 0% cloud images found")
+                raise Exception("Not enough low-cloud satellite images found (max 45% cloud coverage)")
 
             # Fetch before and after images
             before_img = self._fetch_sentinel_image(lat, lon, date1, buffer, resolution_val)
@@ -299,7 +299,7 @@ class GeospatialService:
                     "op": "<=",
                     "args": [
                         {"property": "eo:cloud_cover"},
-                        20.0  # Allow up to 20% cloud cover for date listing
+                        45.0  # Allow up to 45% cloud cover for date listing (Malaysia tropical climate)
                     ]
                 },
                 filter_lang="cql2-json",

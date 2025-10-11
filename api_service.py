@@ -79,7 +79,7 @@ def map_bbox_choice(choice):
 def map_resolution_choice(choice):
     return {"Coarse (10m)": 10, "Standard (5m)": 5, "Fine (2.5m)": 2.5}[choice]
 
-def get_two_zero_cloud_dates(lat, lon, buffer):
+def get_two_low_cloud_dates(lat, lon, buffer):
     config = SHConfig()
     config.sh_client_id = CLIENT_ID
     config.sh_client_secret = CLIENT_SECRET
@@ -95,10 +95,10 @@ def get_two_zero_cloud_dates(lat, lon, buffer):
         bbox=bbox,
         time=(start_date, end_date),
         filter={
-            "op": "=",
+            "op": "<=",
             "args": [
                 {"property": "eo:cloud_cover"},
-                0.0
+                45.0
             ]
         },
         filter_lang="cql2-json",
@@ -228,11 +228,11 @@ async def detect_change(request: ChangeDetectionRequest):
         resolution = map_resolution_choice(request.resolution)
 
         # Get satellite imagery dates
-        date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+        date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
         if not date1 or not date2:
             return ChangeDetectionResponse(
                 success=False,
-                message="Not enough 0% cloud images found for this location"
+                message="Not enough low-cloud satellite images found for this location (max 45% cloud coverage)"
             )
 
         # Fetch satellite images
@@ -304,7 +304,7 @@ async def get_change_image(location: str, image_type: str, zoom_level: str = "Ci
         buffer = map_bbox_choice(zoom_level)
         resolution_val = map_resolution_choice(resolution)
 
-        date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+        date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
         if not date1 or not date2:
             raise HTTPException(status_code=404, detail="No suitable satellite images found")
 

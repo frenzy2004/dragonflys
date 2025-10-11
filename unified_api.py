@@ -158,7 +158,7 @@ def map_bbox_choice(choice):
 def map_resolution_choice(choice):
     return {"Coarse (10m)": 10, "Standard (5m)": 5, "Fine (2.5m)": 2.5}[choice]
 
-def get_two_zero_cloud_dates(lat, lon, buffer):
+def get_two_low_cloud_dates(lat, lon, buffer):
     config = SHConfig()
     config.sh_client_id = CLIENT_ID
     config.sh_client_secret = CLIENT_SECRET
@@ -174,10 +174,10 @@ def get_two_zero_cloud_dates(lat, lon, buffer):
         bbox=bbox,
         time=(start_date, end_date),
         filter={
-            "op": "=",
+            "op": "<=",
             "args": [
                 {"property": "eo:cloud_cover"},
-                0.0
+                45.0
             ]
         },
         filter_lang="cql2-json",
@@ -319,7 +319,7 @@ def get_available_dates(lat: float, lon: float, buffer: float = 0.025) -> List[s
                 "op": "<=",
                 "args": [
                     {"property": "eo:cloud_cover"},
-                    20.0
+                    45.0
                 ]
             },
             filter_lang="cql2-json",
@@ -783,7 +783,7 @@ async def detect_change(request: ChangeDetectionRequest):
         resolution = map_resolution_choice(request.resolution)
 
         # Get satellite imagery dates
-        date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+        date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
         if not date1 or not date2:
             return ChangeDetectionResponse(
                 success=False,
@@ -857,7 +857,7 @@ async def get_change_image(location: str, image_type: str, zoom_level: str = "Ci
         buffer = map_bbox_choice(zoom_level)
         resolution_val = map_resolution_choice(resolution)
 
-        date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+        date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
         if not date1 or not date2:
             raise HTTPException(status_code=404, detail="No suitable satellite images found")
 
@@ -925,7 +925,7 @@ async def analyze(request: AnalysisRequest):
         resolution = map_resolution_choice(request.resolution)
 
         # Get satellite imagery dates
-        date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+        date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
         if not date1 or not date2:
             raise HTTPException(status_code=404, detail="Not enough suitable satellite images found")
 
@@ -1501,4 +1501,4 @@ async def quick_ndvi_analysis(location: str, zoom_level: str = "City-Wide (0.025
     return await analyze_ndvi(request)
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="0.0.0.0", port=8001)

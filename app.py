@@ -36,7 +36,7 @@ def map_bbox_choice(choice):
 def map_resolution_choice(choice):
     return {"Coarse (10m)": 10, "Standard (5m)": 5, "Fine (2.5m)": 2.5}[choice]
 
-def get_two_zero_cloud_dates(lat, lon, buffer):
+def get_two_low_cloud_dates(lat, lon, buffer):
     config = SHConfig()
     config.sh_client_id = CLIENT_ID
     config.sh_client_secret = CLIENT_SECRET
@@ -52,10 +52,10 @@ def get_two_zero_cloud_dates(lat, lon, buffer):
         bbox=bbox,
         time=(start_date, end_date),
         filter={
-            "op": "=",
+            "op": "<=",
             "args": [
                 {"property": "eo:cloud_cover"},
-                0.0
+                45.0
             ]
         },
         filter_lang="cql2-json",
@@ -158,9 +158,9 @@ def detect_change_from_location(location, zoom_option, resolution_option, alpha=
     buffer = map_bbox_choice(zoom_option)
     resolution = map_resolution_choice(resolution_option)
 
-    date1, date2 = get_two_zero_cloud_dates(lat, lon, buffer)
+    date1, date2 = get_two_low_cloud_dates(lat, lon, buffer)
     if not date1 or not date2:
-        return "❌ Not enough 0% cloud images found", None, None, None, None
+        return "❌ Not enough low-cloud satellite images found (max 45% cloud coverage)", None, None, None, None
 
     before_img = fetch_sentinel_image(lat, lon, date1, buffer, resolution)
     after_img = fetch_sentinel_image(lat, lon, date2, buffer, resolution)
