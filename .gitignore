@@ -128,11 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Model files
-*.h5
+# Model files (keeping unet_model.h5 in repo for deployment)
 *.pkl
 *.joblib
-unet_model.h5
 
 # Cache directories
 sentinel_cache/
