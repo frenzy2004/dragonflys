@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: dragonfly-satellite-api
+    env: python
+    region: oregon
+    plan: free
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "uvicorn unified_api:app --host 0.0.0.0 --port $PORT"
+    envVars:
+      - key: CLIENT_ID
+        value: d0769aee-284a-400d-bc5f-c9df47a197eb
+      - key: CLIENT_SECRET
+        value: sKcLVzYGFc3aFaIFJTuROB1BdfAg6VZb
+      - key: PYTHON_VERSION
+        value: 3.11.0

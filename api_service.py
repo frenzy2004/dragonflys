@@ -26,8 +26,8 @@ from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
-CLIENT_ID = os.getenv("CLIENT_ID") or "a0a1ef2a-dd7e-40cd-93e2-b1d63bd0dd49"
-CLIENT_SECRET = os.getenv("CLIENT_SECRET") or "9Ecqsf6sO3Dzt5q3DyhaGlZpJnAtpM5w"
+CLIENT_ID = os.getenv("CLIENT_ID") or "d0769aee-284a-400d-bc5f-c9df47a197eb"
+CLIENT_SECRET = os.getenv("CLIENT_SECRET") or "sKcLVzYGFc3aFaIFJTuROB1BdfAg6VZb"
 
 # Load the TensorFlow model
 model = load_model("unet_model.h5")

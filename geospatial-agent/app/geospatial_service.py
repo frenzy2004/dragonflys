@@ -22,8 +22,8 @@ class GeospatialService:
     def __init__(self):
         # Load environment variables
         load_dotenv()
-        self.client_id = os.getenv("CLIENT_ID") or "a0a1ef2a-dd7e-40cd-93e2-b1d63bd0dd49"
-        self.client_secret = os.getenv("CLIENT_SECRET") or "9Ecqsf6sO3Dzt5q3DyhaGlZpJnAtpM5w"
+        self.client_id = os.getenv("CLIENT_ID") or "d0769aee-284a-400d-bc5f-c9df47a197eb"
+        self.client_secret = os.getenv("CLIENT_SECRET") or "sKcLVzYGFc3aFaIFJTuROB1BdfAg6VZb"
 
         # Load the TensorFlow model - go up two directories to reach the root
         model_path = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "unet_model.h5")
